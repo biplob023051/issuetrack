@@ -1,6 +1,5 @@
 <template>
-	<div class="container">
-	
+	<div>
 		<!-- Static navbar -->
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -10,6 +9,8 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<router-link tag="li" to="/" exact><a>Home</a></router-link>
+						<router-link tag="li" to="/products"><a>Products</a></router-link>
+						<router-link tag="li" to="/products/create" v-if="auth"><a>Add Product</a></router-link>
 						<router-link tag="li" to="/issues/my_issues" v-if="auth"><a>My Issues</a></router-link>
 						<router-link tag="li" to="/issue/create" v-if="auth"><a>Create Issue</a></router-link>
 					</ul>
@@ -23,16 +24,18 @@
 				</div><!--/.nav-collapse -->
 			</div><!--/.container-fluid -->
 		</nav>
-		<div class="alert alert-success" v-if="flash.success">
-		    <strong>Success!</strong> {{ flash.success }}
+		<div class="container">
+			<div class="alert alert-success" v-if="flash.success">
+			    <strong>Success!</strong> {{ flash.success }}
+			</div>
+			<div class="alert alert-warning" v-if="flash.warning">
+			    <strong>Warning!</strong> {{ flash.warning }}
+			</div>
+			<div class="alert alert-danger" v-if="flash.error">
+			    <strong>Error!</strong> {{ flash.error }}
+			</div>
+			<router-view></router-view>
 		</div>
-		<div class="alert alert-warning" v-if="flash.warning">
-		    <strong>Warning!</strong> {{ flash.warning }}
-		</div>
-		<div class="alert alert-danger" v-if="flash.error">
-		    <strong>Error!</strong> {{ flash.error }}
-		</div>
-		<router-view></router-view>
 	</div>
 </template>
 <script>
