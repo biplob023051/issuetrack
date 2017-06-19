@@ -46,16 +46,23 @@
 				</div>
 			</div>
 			<div class="col-md-12" v-if="product.comments">
-				<div class="panel panel-default" v-for="comment in product.comments">
-					<div class="panel-heading">
-						<h3 class="panel-title">
-							<small>Commented by <b>{{ comment.user.name }}</b> at {{ dateFormat(comment.created_at) }}</small>
-						</h3>
+				<transition-group
+					enter-active-class="animated slideInDown"
+					leave-active-class="animated slideInUp"
+					mode="out-in"
+					appear
+				>
+					<div class="panel panel-default" v-for="(comment, index) in product.comments" :key="index">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+								<small>Commented by <b>{{ comment.user.name }}</b> at {{ dateFormat(comment.created_at) }}</small>
+							</h3>
+						</div>
+						<div class="panel-body">
+							<p>{{ comment.body }}</p>
+						</div>
 					</div>
-					<div class="panel-body">
-						<p>{{ comment.body }}</p>
-					</div>
-				</div>
+				</transition-group>
 			</div>
 		</div>
 	</div>
@@ -100,6 +107,7 @@ export default {
 			})
 		},
 		comment() {
+			this.error = ''
 			this.isProcessing = true
 			post('/api/products/' + this.$route.params.id + '/comment', this.form)
 			.then(response => {

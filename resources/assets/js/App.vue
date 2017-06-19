@@ -34,7 +34,17 @@
 			<div class="alert alert-danger" v-if="flash.error">
 			    <strong>Error!</strong> {{ flash.error }}
 			</div>
-			<router-view></router-view>
+			<!-- <transition name="slide" type="animation" appear>
+				<router-view></router-view>
+			</transition> -->
+			<transition 
+				enter-active-class="animated slideInLeft"
+				leave-active-class="animated fadeOut"
+				mode="out-in"
+				appear
+			>
+				<router-view></router-view>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -99,4 +109,41 @@
 	body {
 		margin-top: 10px;
 	}
+	.slide-enter {
+		opacity: 0;
+	}
+
+	.slide-enter-active {
+		animation: slide-in 1s ease-out forwards;
+		transition: opacity 0.5s;
+	}
+
+	.slide-leave {
+		
+	}
+
+	.slide-leave-active {
+		animation: slide-out 1s ease-out forwards;
+		transition: opacity 1s;
+		opacity: 0;
+	}	
+
+	@keyframes slide-in {
+		from {
+			transform: translateY(20px);
+		}
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes slide-out {
+		from {
+			transform: translateY(0);
+		}
+		to {
+			transform: translateY(20px);
+		}
+	}
+
 </style>

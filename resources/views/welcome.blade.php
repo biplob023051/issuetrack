@@ -7,8 +7,8 @@
         <title>Issue Tracker</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <link rel="stylesheet" type="text/css" href="{{ mix('css/app.css') }}">
-
     </head>
     <body>
         <div id="root"></div>
