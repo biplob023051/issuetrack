@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Commentable;
 
 class Product extends Model
 {
+    use Commentable;
     protected $fillable = ['name', 'description', 'image', 'quantity', 'price'];
 
     public function offers() {

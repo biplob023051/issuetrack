@@ -8,19 +8,19 @@ export default {
 		this.state.success = message
 		setTimeout(() => {
 			this.removeSuccess()
-		}, 5000);
+		}, 2000);
 	},
 	setWarning(message) {
 		this.state.warning = message
 		setTimeout(() => {
 			this.removeSuccess()
-		}, 5000);
+		}, 3000);
 	},
 	setError(message) {
 		this.state.error = message
 		setTimeout(() => {
 			this.removeError()
-		}, 10000);
+		}, 3000);
 	},
 	removeSuccess() {
 		this.state.success = null

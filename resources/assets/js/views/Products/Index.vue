@@ -5,12 +5,13 @@
 				<div class="thumbnail">
 					<router-link :to="`products/${product.id}`">
 						<div class="caption">
-							<p>{{ product.name }}</p>
+							<h4>{{ product.name }}</h4>
 						</div>	
 						<img :src="`/images/${product.image}`" v-if="product.image" class="img-thumbnail">
 					</router-link>
 					<div class="caption">
 						<small>Price: $ {{ product.price }}</small>
+						<small class="pull-right">In Stock: {{ product.quantity }} pcs</small>
 					</div>
 				</div>
 			</div>

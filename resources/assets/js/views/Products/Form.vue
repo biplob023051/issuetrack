@@ -44,7 +44,7 @@
 		</div>
 		<div class="col-md-12">
 			<div class="box">
-				<h3 class="product-sub-title">Offers</h3>
+				<h3 class="product-sub-title" style="margin-left: 12px;">Offers</h3>
 				<div v-for="(offer, index) in form.offers" class="row" style="margin: 5px 0;">
 					<div class="col-md-4">
 						<input type="text" class="form-control" v-model="offer.name" placeholder="Title" 
@@ -62,7 +62,7 @@
 						<button @click="remove('offers', index)" class="btn btn-danger">&times;</button>
 					</div>
 				</div>
-				<button @click="addOffer" class="btn btn-primary">Add Offer</button>
+				<button @click="addOffer" class="btn btn-primary" style="margin-left: 14px;">Add Offer</button>
 			</div>
 		</div>
 	</div>

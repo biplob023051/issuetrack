@@ -4,19 +4,19 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<router-link class="navbar-brand" to="/">Issue Tracking</router-link>
+					<router-link class="navbar-brand" to="/">Sample App</router-link>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<router-link tag="li" to="/" exact><a>Home</a></router-link>
-						<router-link tag="li" to="/products"><a>Products</a></router-link>
-						<router-link tag="li" to="/products/create" v-if="auth"><a>Add Product</a></router-link>
-						<router-link tag="li" to="/issues/my_issues" v-if="auth"><a>My Issues</a></router-link>
-						<router-link tag="li" to="/issue/create" v-if="auth"><a>Create Issue</a></router-link>
+						<router-link tag="li" to="/" exact activeClass="active"><a>Home</a></router-link>
+						<router-link tag="li" to="/products" exact activeClass="active"><a>Products</a></router-link>
+						<router-link tag="li" to="/products/create" exact v-if="auth" activeClass="active"><a>Add Product</a></router-link>
+						<!-- <router-link tag="li" to="/issues/my_issues" v-if="auth"><a>My Issues</a></router-link>
+						<router-link tag="li" to="/issue/create" v-if="auth"><a>Create Issue</a></router-link> -->
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<router-link tag="li" to="/login" v-if="guest"><a>Login</a></router-link>
-						<router-link tag="li" to="/register" v-if="guest"><a>Register</a></router-link>
+						<router-link tag="li" to="/login" v-if="guest" activeClass="active"><a>Login</a></router-link>
+						<router-link tag="li" to="/register" v-if="guest" activeClass="active"><a>Register</a></router-link>
 						<li  v-if="auth">
 							<a style="cursor: pointer" @click.stop="logout">Logout</a>
 						</li>

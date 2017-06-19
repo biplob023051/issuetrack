@@ -8,6 +8,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Product;
 use App\User;
 use App\Offer;
+use App\Comment;
 use File;
 
 class ProductController extends Controller
@@ -78,12 +79,31 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::with(['user', 'offers'])
+        $product = Product::with(
+                [
+                    'user', 
+                    'offers', 
+                    'comments' => function($q) {
+                        return $q
+                            ->orderBy('created_at', 'desc')
+                            ->limit(2)
+                            ->with('user');
+                    }
+                ]
+            )
             ->findOrFail($id);
+
+        // $comment = new Comment();
+        // $comment->body = 'Tes nas to';
+        // $comment->user_id = 1;
+        // $test = $product->comments()->save($comment);
+
+        $form = Comment::form();
 
         return response()
             ->json([
-                'product' => $product
+                'product' => $product,
+                'form' => $form
             ]);
     }
 
@@ -173,6 +193,25 @@ class ProductController extends Controller
         return response()
             ->json([
                 'success' => true
+            ]);
+    }
+
+    public function postComment(Product $product, Request $request) {
+        $this->validate($request, [
+            'body' => 'required|between:10,500'
+        ]);
+
+        $comment = new Comment(['body' => $request->body]);
+        $comment->user_id = $request->user()->id;
+
+        $comment = $product->comments()->save($comment);
+
+        $comment = Comment::where('id', $comment->id)->with('user')->first();
+
+        return response()
+            ->json([
+                'success' => true,
+                'comment' => $comment
             ]);
     }
 }

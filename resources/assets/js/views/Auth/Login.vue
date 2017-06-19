@@ -8,12 +8,12 @@
 				<div class="form-group">
 					<label for="email">Email</label>
 					<input type="email" v-model="form.email" placeholder="Your email" class="form-control">
-					<span class="help-block" v-if="errors.email">{{ errors.email[0] }}</span>
+					<small class="text-danger" v-if="errors.email">{{ errors.email[0] }}</small>
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>
 					<input type="password" v-model="form.password" placeholder="Your password" class="form-control" name="password">
-					<span class="help-block" v-if="errors.password">{{ errors.password[0] }}</span>
+					<small class="text-danger" v-if="errors.password">{{ errors.password[0] }}</small>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary" :disabled="isProcessing">Login</button>
